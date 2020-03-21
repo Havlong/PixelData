@@ -1,6 +1,6 @@
 using System;
 
-namespace app.Models
+namespace PixelDataApp.Models
 {
     public class ErrorViewModel
     {
