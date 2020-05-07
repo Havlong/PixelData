@@ -7,7 +7,7 @@ namespace PixelDataApp.Models
     {
         public int Id { get; set; }
 
-        public String Route { get; set; }
+        public String Filepath { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime PublishTime { get; set; }
         public String Info { get; set; }
