@@ -11,6 +11,7 @@ namespace PixelDataApp.Models
         [DataType(DataType.DateTime)]
         public DateTime PublishTime { get; set; }
         public String Info { get; set; }
+
         public int AnswerId { get; set; }
         public Label Answer { get; set; }
     }

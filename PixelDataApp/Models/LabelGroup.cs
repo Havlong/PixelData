@@ -9,6 +9,7 @@ namespace PixelDataApp.Models
         public int Id { get; set; }
 
         public String Name { get; set; }
+        public String NameRu { get; set; }
 
         public List<Label> Labels { get; set; }
     }

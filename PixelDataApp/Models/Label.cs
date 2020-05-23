@@ -10,8 +10,10 @@ namespace PixelDataApp.Models
 
         public String Name { get; set; }
         public String NameRu { get; set; }
+
         public String StringID { get; set; }
         public List<Picture> Pictures { get; set; }
+
         public int LabelGroupId { get; set; }
         public LabelGroup LabelGroup { get; set; }
     }
