@@ -74,8 +74,8 @@ namespace PixelDataApp.Controllers
                 if (file != null && file.Length > 0)
                 {
                     var label = _context.Labels.Find(picture.AnswerId);
-                    _logger.LogInformation(label.ToString());
-                    picture.Filepath = Path.Combine("PixelData", "files", label.LabelGroup.Name, label.StringID, picture.Id.ToString());
+                    var labelgroup = _context.LabelGroups.Find(label.LabelGroupId);
+                    picture.Filepath = Path.Combine("PixelData", "files", labelgroup.Name, label.StringID, picture.Id.ToString());
                 }
 
                 using(var stream = new FileStream(picture.Filepath, FileMode.Create))
