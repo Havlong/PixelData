@@ -16,7 +16,7 @@ namespace PixelDataApp.Controllers
     public class PicturesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<PicturesController> _logger;
 
         public PicturesController(ApplicationDbContext context, ILogger<PicturesController> logger)
         {
