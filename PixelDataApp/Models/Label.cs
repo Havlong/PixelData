@@ -16,5 +16,9 @@ namespace PixelDataApp.Models
 
         public int LabelGroupId { get; set; }
         public LabelGroup LabelGroup { get; set; }
+
+        public override string ToString() {
+            return $"Label {{ Id: {Id}, Name {Name}, NameRu: {NameRu}, StringId: {StringID}, LabelGroupId: {LabelGroupId} }}";
+        }
     }
 }
