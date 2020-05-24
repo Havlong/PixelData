@@ -73,21 +73,17 @@ namespace PixelDataApp.Controllers
 
                 if (file != null && file.Length > 0)
                 {
-                    if (picture == null)
-                    {
-                        _logger.LogInformation("null picture");
-                    }
-                    var label =  await _context.Labels.FindAsync(picture.AnswerId);
+                    var label = _context.Labels.Find(picture.AnswerId);
                     picture.Filepath = Path.Combine("PixelData", "files", label.LabelGroup.Name, label.StringID, picture.Id.ToString());
                 }
 
                 using(var stream = new FileStream(picture.Filepath, FileMode.Create))
                 {
-                    await file.CopyToAsync(stream);
+                    file.CopyTo(stream);
                 }
 
                 _context.Update(picture);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
 
                 return RedirectToAction(nameof(Index));
             }
