@@ -67,7 +67,7 @@ namespace PixelDataApp.Controllers
                 {
                     var label =  await _context.Labels.FindAsync(picture.AnswerId);
                     picture.PublishTime = DateTime.Now;
-                    picture.Filepath = Path.Combine("PixelData", "files", label.StringID, picture.Id);
+                    picture.Filepath = Path.Combine("PixelData", "files", label.StringID, picture.Id.ToString());
                 }
                 
                 _context.Add(picture);
