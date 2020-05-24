@@ -70,6 +70,10 @@ namespace PixelDataApp.Controllers
 
                 if (file != null && file.Length > 0)
                 {
+                    if (picture == null)
+                    {
+                        Console.WriteLine("null picture");
+                    }
                     var label =  await _context.Labels.FindAsync(picture.AnswerId);
                     picture.Filepath = Path.Combine("PixelData", "files", label.LabelGroup.Name, label.StringID, picture.Id.ToString());
                 }
