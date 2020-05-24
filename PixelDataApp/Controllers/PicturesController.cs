@@ -132,6 +132,23 @@ namespace PixelDataApp.Controllers
 
             if (ModelState.IsValid)
             {
+                var originalPicture = _context.Pictures.Find(id);
+                if (originalPicture.AnswerId != picture.AnswerId) {
+                    var label = _context.Labels.Find(picture.AnswerId);
+                    var labelgroup = _context.LabelGroups.Find(label.LabelGroupId);
+                    var path = Path.Combine("PixelData", "files", labelgroup.Name);
+                    if (!Directory.Exists(path)) {
+                        Directory.CreateDirectory(path);
+                    }
+                    path = Path.Combine(path, label.StringID);
+                    if (!Directory.Exists(path)) {
+                        Directory.CreateDirectory(path);
+                    }
+                    if (System.IO.File.Exists(originalPicture.Filepath)) {
+                        System.IO.File.Move(originalPicture.Filepath, path);
+                        picture.Filepath = path;
+                    }
+                }
                 try
                 {
                     _context.Update(picture);
@@ -179,6 +196,8 @@ namespace PixelDataApp.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var picture = await _context.Pictures.FindAsync(id);
+            if(System.IO.File.Exists(picture.Filepath))
+                System.IO.File.Delete(picture.Filepath);
             _context.Pictures.Remove(picture);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
