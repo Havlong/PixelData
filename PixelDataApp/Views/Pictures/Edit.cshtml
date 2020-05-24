@@ -13,6 +13,8 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="PublishTime" />
+            <input type="hidden" asp-for="Filepath" />
             <div class="form-group">
                 <label asp-for="Info" class="control-label"></label>
                 <input asp-for="Info" class="form-control" />
