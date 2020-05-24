@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using PixelDataApp.Data;
@@ -15,10 +16,12 @@ namespace PixelDataApp.Controllers
     public class PicturesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<HomeController> _logger;
 
-        public PicturesController(ApplicationDbContext context)
+        public PicturesController(ApplicationDbContext context, ILogger<PicturesController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Pictures
@@ -72,7 +75,7 @@ namespace PixelDataApp.Controllers
                 {
                     if (picture == null)
                     {
-                        Console.WriteLine("null picture");
+                        _logger.LogInformation("null picture");
                     }
                     var label =  await _context.Labels.FindAsync(picture.AnswerId);
                     picture.Filepath = Path.Combine("PixelData", "files", label.LabelGroup.Name, label.StringID, picture.Id.ToString());
