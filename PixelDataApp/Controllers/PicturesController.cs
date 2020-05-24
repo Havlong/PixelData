@@ -59,7 +59,7 @@ namespace PixelDataApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Info,AnswerId")] Picture picture, IFormFile file)
+        public async Task<IActionResult> Create([Bind("Id,Filepath,PublishTime,Info,AnswerId")] Picture picture, IFormFile file)
         {
             if (ModelState.IsValid)
             {
@@ -71,18 +71,6 @@ namespace PixelDataApp.Controllers
                 if (file != null && file.Length > 0)
                 {
                     var label =  await _context.Labels.FindAsync(picture.AnswerId);
-                    if(label == null) {
-                        Console.WriteLine("null label");
-                    }
-                    else if (label.LabelGroup == null) {
-                        Console.WriteLine("null labelgroup");
-                    }
-                    else if (label.LabelGroup.Name == null) {
-                        Console.WriteLine("null labelgroup name");
-                    }
-                    else if (picture == null) {
-                        Console.WriteLine("null picture")
-                    }
                     picture.Filepath = Path.Combine("PixelData", "files", label.LabelGroup.Name, label.StringID, picture.Id.ToString());
                 }
 
