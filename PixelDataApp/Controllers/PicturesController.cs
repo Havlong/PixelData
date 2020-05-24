@@ -59,7 +59,7 @@ namespace PixelDataApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Info,AnswerId")] Picture picture, IFormFile file)
+        public async Task<IActionResult> Create([Bind("Info,AnswerId")] Picture picture, IFormFile file)
         {
             if (ModelState.IsValid)
             {
