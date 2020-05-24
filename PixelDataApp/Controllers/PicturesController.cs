@@ -69,7 +69,7 @@ namespace PixelDataApp.Controllers
                 picture.PublishTime = DateTime.Now;
                 
                 _context.Add(picture);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
 
                 if (file != null && file.Length > 0)
                 {
