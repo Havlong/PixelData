@@ -63,20 +63,24 @@ namespace PixelDataApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (file != null && file.Length > 0)
-                {
-                    var label =  await _context.Labels.FindAsync(picture.AnswerId);
-                    picture.PublishTime = DateTime.Now;
-                    picture.Filepath = Path.Combine("PixelData", "files", label.StringID, picture.Id.ToString());
-                }
+                picture.PublishTime = DateTime.Now;
                 
                 _context.Add(picture);
                 await _context.SaveChangesAsync();
+
+                if (file != null && file.Length > 0)
+                {
+                    var label =  await _context.Labels.FindAsync(picture.AnswerId);
+                    picture.Filepath = Path.Combine("PixelData", "files", label.LabelGroup.Name, label.StringID, picture.Id.ToString());
+                }
 
                 using(var stream = new FileStream(picture.Filepath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
+
+                _context.Update(picture);
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
