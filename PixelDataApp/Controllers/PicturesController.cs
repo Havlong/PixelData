@@ -75,8 +75,17 @@ namespace PixelDataApp.Controllers
                 {
                     var label = _context.Labels.Find(picture.AnswerId);
                     var labelgroup = _context.LabelGroups.Find(label.LabelGroupId);
-                    picture.Filepath = Path.Combine("PixelData", "files", labelgroup.Name, label.StringID, picture.Id.ToString());
+                    var path = Path.Combine("PixelData", "files", labelgroup.Name);
+                    if (!Directory.Exists(path)) {
+                        Directory.CreateDirectory(path);
+                    }
+                    path = Path.Combine(path, label.StringID);
+                    if (!Directory.Exists(path)) {
+                        Directory.CreateDirectory(path);
+                    }
+                    picture.Filepath = Path.Combine(path, picture.Id.ToString());
                 }
+
 
                 using(var stream = new FileStream(picture.Filepath, FileMode.Create))
                 {
