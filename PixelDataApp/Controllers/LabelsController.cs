@@ -48,7 +48,7 @@ namespace PixelDataApp.Controllers
         // GET: Labels/Create
         public IActionResult Create()
         {
-            ViewData["LabelGroupId"] = new SelectList(_context.LabelGroups, "Id", "Id");
+            ViewData["LabelGroupId"] = new SelectList(_context.LabelGroups, "Id", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace PixelDataApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LabelGroupId"] = new SelectList(_context.LabelGroups, "Id", "Id", label.LabelGroupId);
+            ViewData["LabelGroupId"] = new SelectList(_context.LabelGroups, "Id", "Name", label.LabelGroupId);
             return View(label);
         }
 
@@ -82,7 +82,7 @@ namespace PixelDataApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["LabelGroupId"] = new SelectList(_context.LabelGroups, "Id", "Id", label.LabelGroupId);
+            ViewData["LabelGroupId"] = new SelectList(_context.LabelGroups, "Id", "Name", label.LabelGroupId);
             return View(label);
         }
 
@@ -118,7 +118,7 @@ namespace PixelDataApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LabelGroupId"] = new SelectList(_context.LabelGroups, "Id", "Id", label.LabelGroupId);
+            ViewData["LabelGroupId"] = new SelectList(_context.LabelGroups, "Id", "Name", label.LabelGroupId);
             return View(label);
         }
 
