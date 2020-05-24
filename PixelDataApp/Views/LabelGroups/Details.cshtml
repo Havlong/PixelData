@@ -31,50 +31,6 @@
     </dl>
 </div>
 <div>
-    <h4>Associated labels</h4>
-    <hr />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    NameRu
-                </th>
-                <th>
-                    StringID
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Labels) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NameRu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StringID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LabelGroup.Name)
-                </td>
-            </tr>
-}
-        </tbody>
-    </table>
-</div>
-<div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

@@ -43,47 +43,6 @@
     </dl>
 </div>
 <div>
-    <h4>Associated pictures</h4>
-    <hr />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Filepath
-                </th>
-                <th>
-                    PublishTime
-                </th>
-                <th>
-                    Info
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Pictures) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Filepath)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PublishTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Info)
-                </td>
-            </tr>
-}
-        </tbody>
-    </table>
-</div>
-<div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
