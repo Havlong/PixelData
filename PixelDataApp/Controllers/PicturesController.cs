@@ -48,7 +48,7 @@ namespace PixelDataApp.Controllers
         // GET: Pictures/Create
         public IActionResult Create()
         {
-            ViewData["AnswerId"] = new SelectList(_context.Labels, "Id", "Id");
+            ViewData["AnswerId"] = new SelectList(_context.Labels, "Id", "Name");
             return View();
         }
 
@@ -57,15 +57,28 @@ namespace PixelDataApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Filepath,PublishTime,Info,AnswerId")] Picture picture)
+        public async Task<IActionResult> Create([Bind("Id,Info,AnswerId")] Picture picture, IFormFile file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null && file.Length > 0)
+                {
+                    var label =  await _context.Labels.FindAsync(picture.AnswerId);
+                    picture.PublishTime = DateTime.Now;
+                    picture.Filepath = Path.Combine("PixelData", "files", label.StringID, picture.Id);
+                }
+                
                 _context.Add(picture);
                 await _context.SaveChangesAsync();
+
+                using(var stream = new FileStream(picture.Filepath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AnswerId"] = new SelectList(_context.Labels, "Id", "Id", picture.AnswerId);
+            ViewData["AnswerId"] = new SelectList(_context.Labels, "Id", "Name", picture.AnswerId);
             return View(picture);
         }
 
@@ -82,7 +95,7 @@ namespace PixelDataApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["AnswerId"] = new SelectList(_context.Labels, "Id", "Id", picture.AnswerId);
+            ViewData["AnswerId"] = new SelectList(_context.Labels, "Id", "Name", picture.AnswerId);
             return View(picture);
         }
 
@@ -118,7 +131,7 @@ namespace PixelDataApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AnswerId"] = new SelectList(_context.Labels, "Id", "Id", picture.AnswerId);
+            ViewData["AnswerId"] = new SelectList(_context.Labels, "Id", "Name", picture.AnswerId);
             return View(picture);
         }
 
