@@ -50,7 +50,7 @@ namespace PixelDataApp
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "PixelData")),
-                RequestPath = "/StaticFiles/PixelData/"
+                RequestPath = "/StaticFiles/PixelData"
             });
 
             app.UseRouting();
