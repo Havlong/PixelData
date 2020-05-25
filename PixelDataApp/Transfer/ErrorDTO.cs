@@ -1,8 +1,6 @@
-using System;
-
-namespace PixelDataApp.Models
+namespace PixelDataApp.Transfer
 {
-    public class ErrorViewModel
+    public class ErrorDTO
     {
         public string RequestId { get; set; }
 

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PixelDataApp.Models;
 
 namespace PixelDataApp.Data
 {
@@ -8,6 +9,10 @@ namespace PixelDataApp.Data
         {
 
         }
+
+        public DbSet<Label> Labels { get; set; }
+        public DbSet<LabelGroup> LabelGroups { get; set; }
+        public DbSet<Picture> Pictures { get; set; }
 
     }
 }
