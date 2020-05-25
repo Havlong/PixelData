@@ -48,12 +48,6 @@ namespace PixelDataApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseFileServer(new FileServerOptions
-            {
-                FileProvider = new PhysicalFileProvider("/app/PixelData/files/**"),
-                RequestPath = "/StaticFiles/PixelData/files"
-            });
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
