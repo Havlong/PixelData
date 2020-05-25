@@ -50,7 +50,7 @@ namespace PixelDataApp
 
             app.UseFileServer(new FileServerOptions
             {
-                FileProvider = new PhysicalFileProvider("/app/PixelData/files"),
+                FileProvider = new PhysicalFileProvider("/app/PixelData/files/**"),
                 RequestPath = "/StaticFiles/PixelData/files"
             });
 
