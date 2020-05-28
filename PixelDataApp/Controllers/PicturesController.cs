@@ -31,6 +31,18 @@ namespace PixelDataApp.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> Image(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+            var picture = await _context.Pictures
+                .FirstOrDefaultAsync(m => m.Id == id);
+            var fullpath = Path.GetFullPath(picture.Filepath);
+            return PhysicalFile(fullpath, "image/jpeg");
+        }
+
         // GET: Pictures/Details/5
         public async Task<IActionResult> Details(int? id)
         {
