@@ -39,7 +39,7 @@ namespace PixelDataApp.Controllers
             }
             var picture = await _context.Pictures
                 .FirstOrDefaultAsync(m => m.Id == id);
-            return File(picture.Filepath, "image/jpeg");
+            return PhysicalFile(picture.Filepath, "image/jpeg");
         }
 
         // GET: Pictures/Details/5
