@@ -144,7 +144,7 @@ namespace PixelDataApp.Controllers
 
             if (ModelState.IsValid)
             {
-                var originalPicture = _context.Pictures.Find(id);
+                var originalPicture = _context.Pictures.AsNoTracking().FirstOrDefault(m => m.Id == id);
                 if (originalPicture.AnswerId != picture.AnswerId) {
                     var label = _context.Labels.Find(picture.AnswerId);
                     var labelgroup = _context.LabelGroups.Find(label.LabelGroupId);

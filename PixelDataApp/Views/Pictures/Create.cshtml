@@ -4,16 +4,16 @@
     ViewData["Title"] = "Create picture";
 }
 
-<h1>Create picture</h1>
+<h1>Загрузить фото</h1>
 
-<h4>Picture</h4>
+<h4>Фото</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" method="post" enctype="multipart/form-data" asp-controller="Pictures">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label for="file" class="control-label">Upload your image</label>
+                <label for="file" class="control-label">Выберите фото для загрузки</label>
                 <input id="file" name="file" class="form-control-file" type="file" required/>
             </div>
             <div class="form-group">
@@ -26,14 +26,14 @@
                 <select asp-for="AnswerId" class ="form-control" asp-items="ViewBag.AnswerId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Загрузить" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Вернуться к списку</a>
 </div>
 
 @section Scripts {
