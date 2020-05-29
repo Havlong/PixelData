@@ -144,10 +144,10 @@ namespace PixelDataApp.Controllers
 
             if (ModelState.IsValid)
             {
-                var originalPicture = await _context.Pictures.FindAsync(id);
+                var originalPicture = await _context.Pictures.FirstOrDefaultAsync(m => m.Id == id);
                 if (originalPicture.AnswerId != picture.AnswerId) {
-                    var label = await _context.Labels.FindAsync(picture.AnswerId);
-                    var labelgroup = await _context.LabelGroups.FindAsync(label.LabelGroupId);
+                    var label = await _context.Labels.FirstOrDefaultAsync(m => m.Id == picture.AnswerId);
+                    var labelgroup = await _context.LabelGroups.FirstOrDefaultAsync(m => m.Id == label.LabelGroupId);
                     var path = Path.Combine("PixelData", "files", labelgroup.Name);
                     if (!Directory.Exists(path)) {
                         Directory.CreateDirectory(path);
